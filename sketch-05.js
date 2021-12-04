@@ -46,9 +46,6 @@ const sketch = ({ context, width, height }) => {
 
     typeContext.translate(tx, ty);
 
-    typeContext.beginPath();
-    typeContext.rect(mx, my, mw, mh);
-    typeContext.stroke();
     typeContext.fillText(text, 0, 0);
 
     typeContext.restore();
@@ -59,7 +56,7 @@ const sketch = ({ context, width, height }) => {
 
     for (let i = 0; i < numCells; i++) {
       const col = i % cols;
-      const row = Math.floor(1 / cols);
+      const row = Math.floor(i / cols);
 
       const x = col * cell;
       const y = row * cell;
@@ -69,11 +66,11 @@ const sketch = ({ context, width, height }) => {
       const b = typeData[i * 4 + 2];
       const a = typeData[i * 4 + 3];
 
-      context.fillStyle = `rgb(${r}, ${g}, ${b})`;
+      context.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
 
       context.save();
       context.translate(x, y);
-      // context.fillRect(0, 0, cell, cell);
+      context.translate(cell * 0.5, cell * 0.5);
 
       context.beginPath();
       context.arc(0, 0, cell * 0.5, 0, Math.PI * 2);
