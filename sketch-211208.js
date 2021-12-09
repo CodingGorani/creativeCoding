@@ -13,7 +13,7 @@ const getRadiant = (angle) => {
 
 const sketch = () => {
   return ({ frame, context, width, height }) => {
-    context.fillStyle = 'white';
+    context.fillStyle = 'black';
     context.fillRect(0, 0, width, height);
 
     const w = width * 0.95;
@@ -50,13 +50,13 @@ const sketch = () => {
       const y = Math.cos(getRadiant(30)) * hs * row;
 
       const noise = random.noise3D(x, y, frame * 10, 0.001, 1);
-      const scale = math.mapRange(noise, -1, 1, 0, 1);
+      const scale = math.mapRange(noise, -1, 1, 0, 1.1);
 
       context.save();
-      context.translate(tx + x + hs, ty + y + hs);
+      context.translate(tx + x + (3 / 2) * hs, ty + y + (1 / 2) * hs);
       if (row % 2 === 1) context.translate((3 / 2) * hs, 0);
       context.scale(scale, scale);
-      context.fillStyle = 'black';
+      context.fillStyle = 'white';
       context.fill(drawHexagon());
       context.restore();
     }
