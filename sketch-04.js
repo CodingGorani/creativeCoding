@@ -5,7 +5,7 @@ const Tweakpane = require('tweakpane');
 
 const settings = {
   dimensions: [1080, 1080],
-  animation: true,
+  animate: true,
 };
 
 const params = {
