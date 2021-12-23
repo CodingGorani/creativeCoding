@@ -5,7 +5,7 @@ class AudioAnalyzer {
       alert(errMsg);
       throw new Error(errMsg);
     }
-    this.audioContext = new (AudioContext || webkitAudioContext)();
+    // this.audioContext = new (AudioContext || webkitAudioContext)();
     this.audioBuffer = null;
     this.sampleRate = 0;
     this.peaks = [];
@@ -40,7 +40,7 @@ class AudioAnalyzer {
         .fill()
         .forEach((v, newPeakIdx) => {
           const start = Math.floor(newPeakIdx * sampleSize);
-          const end = Math.floor(newPeakIdx + sampleSize);
+          const end = Math.floor(start + sampleSize);
 
           let min = peaks[0];
           let max = peaks[0];
